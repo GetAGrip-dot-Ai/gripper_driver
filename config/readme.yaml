@@ -1,0 +1,9 @@
+mx64: cutting mechanism
+mx28: gripping mechanism
+sensor_msgs/Joy
+
+gripper controller node:
+init: calibration, q_offset, actuate tendons until effort threshold to tension tendons
+
+topics: gripper_close: Bool
+        gripper_cut: Bool
