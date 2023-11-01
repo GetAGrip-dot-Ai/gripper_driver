@@ -6,6 +6,7 @@ from numpy.linalg import norm
 import rospy
 from std_msgs.msg import Bool
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
+from sensor_msgs.msg import JointState
 from ag_gripper_driver.srv import Pegasus, PegasusResponse
 
 class MotorDriverROSWrapper:
@@ -99,7 +100,7 @@ class MotorDriverROSWrapper:
             for j in range(1, 100):
                 q = rospy.wait_for_message('/ag_gripper/joint_states', JointState)
                 curr_effort = np.abs(q.effort[i])
-                if curr_effort > 5:
+                if curr_effort > 8:
                     self.calibration[i] = copy.deepcopy(q.position[i])
                     break
                 

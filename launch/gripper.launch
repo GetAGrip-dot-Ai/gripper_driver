@@ -24,6 +24,6 @@
     </rosparam>
   </node>
 
-  <node name="pegusus_node" pkg="ag_gripper_driver" type="pegasus_server.py" output="screen"/>
+  <node name="pegusus_node" pkg="ag_gripper_driver" type="pegasus_server_non_calibration.py" output="screen"/>
 
 </launch>
