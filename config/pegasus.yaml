@@ -3,12 +3,15 @@
 # Control table item has to be set Camel_Case and not included whitespace
 # You are supposed to set at least Dynamixel ID
 
+
+# ----- INITIAL POSITION FOR DYNAMIXEL - READ USING WIZARD --------
+
 # cutter mechanism:
 mx64:
   ID: 2
   Return_Delay_Time: 0
-  # Goal_Position: 2000   #startup
-  Goal_Position: 1000   #all metal gear test
+  # Goal_Position: 1000   # all metal gear (silver body) 11/2
+  Goal_Position: 1800   # plastic gearing silver/white body 11/2
 
 
 
@@ -16,6 +19,7 @@ mx64:
 mx28:
   ID: 3
   Return_Delay_Time: 0
-  # Goal_Position: 2700 #startup
-  Goal_Position: 2300 #all metal gear test
+  # Goal_Position: 2300 #all metal gear (silver body) 11/2
+  Goal_Position: 3200 #plastic gearing silver/white body 11/2
+
 

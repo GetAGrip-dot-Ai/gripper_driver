@@ -1,0 +1,45 @@
+# ----- TUNED OPEN/CLOSED POSITION FOR DYNAMIXEL - HAND TUNED ------
+# keep only the section relevant to the current configuration, comment everything else out
+
+#array print out will be of form [mx28, mx64]
+
+# -------------- plastic gearing silver/white body (LAST UPDATED 11/2) -------------#
+
+# gripper mechanism:
+mx28:
+  open: 1.4
+  close: 2.3
+
+# cutter mechanism:
+mx64:
+  open: -0.6
+  close: 0.75
+
+# dont wann squeeze the pep to deth
+grab_offset: [0.1, 0.0]
+
+# -------------- all metal gear silver body (LAST UPDATED 11/2) -------------#
+
+# # gripper mechanism:
+# mx28:
+#   open: 0.2
+#   close: 1.1
+
+# # cutter mechanism:
+# mx64:
+#   open: -2
+#   close: -0.8
+
+# # dont wann squeeze the pep to deth
+# grab_offset: [0.1, 0.0]
+
+
+# -------------- TUNING INSTRUCTIONS -------------#
+# 1) Update pegasus.yaml using the dynamixel wizard
+# 2) Set all mx28 and mx64 positions to the printed q_zero
+# 3) from printed q_zero, increment until tuned values are found
+
+
+
+
+

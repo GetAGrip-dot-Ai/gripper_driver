@@ -8,6 +8,8 @@ from std_msgs.msg import Bool
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from sensor_msgs.msg import JointState
 from ag_gripper_driver.srv import Pegasus, PegasusResponse
+import yaml
+import os
 
 class MotorDriverROSWrapper:
 
@@ -24,22 +26,21 @@ class MotorDriverROSWrapper:
 
         self.motor_names = ['mx28', 'mx64']
 
-        # -------- TUNED VALUES
-        # 1) comment out section below
-        # 2) run this script
-        # 3) from printed q_zero, increment until tuned values are found
+        # read in yaml file
+        absolute_path = os.path.dirname(__file__)
+        # print(absolute_path)
+        relative_path = "../config/positions.yaml"
+        full_path = os.path.join(absolute_path, relative_path)
 
-        # hand tuned, calibration will override these values
-        self.open_pos = np.array([0.2, -2]) # first is mx28, second is mx64
-        self.close_pos = np.array([1.1, -0.8])
-        self.reset_pos = copy.copy(self.q_zero)
-
-        self.grab_offset_from_closed = np.array([0.1, 0.0]) # dont wann squeeze the pep to deth
-        self.close_pos = self.close_pos - self.grab_offset_from_closed
-
-        # -------- TUNED VALUES --------- #
-        # do not calibrate 
-        # self.calibrate()
+        with open(full_path) as file:
+            positions = yaml.load(file, Loader=yaml.FullLoader)
+            # import pdb; pdb.set_trace()
+            self.open_pos = np.array([positions['mx28']['open'], positions['mx64']['open']])
+            rospy.loginfo("open_pos: {}".format(self.open_pos))
+            self.close_pos = np.array([positions['mx28']['close'], positions['mx64']['close']])
+            rospy.loginfo("close_pos: {}".format(self.close_pos))
+            self.reset_pos = copy.copy(self.q_zero)
+            self.close_pos = self.close_pos - np.array(positions['grab_offset'])
 
         # close gripper and cutter msg
         self.close_msg = JointTrajectory()
