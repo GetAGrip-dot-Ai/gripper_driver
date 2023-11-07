@@ -6,32 +6,32 @@
 # -------------- plastic gearing silver/white body (LAST UPDATED 11/2) -------------#
 
 # gripper mechanism:
-mx28:
-  open: 1.4
-  close: 2.3
-
-# cutter mechanism:
-mx64:
-  open: -0.6
-  close: 0.75
-
-# dont wann squeeze the pep to deth
-grab_offset: [0.1, 0.0]
-
-# -------------- all metal gear silver body (LAST UPDATED 11/2) -------------#
-
-# # gripper mechanism:
 # mx28:
-#   open: 0.2
-#   close: 1.1
+#   open: 1.4
+#   close: 2.3
 
 # # cutter mechanism:
 # mx64:
-#   open: -2
-#   close: -0.8
+#   open: -0.6
+#   close: 0.75
 
 # # dont wann squeeze the pep to deth
 # grab_offset: [0.1, 0.0]
+
+# -------------- all metal gear silver body (LAST UPDATED 11/2) -------------#
+
+# gripper mechanism:
+mx28:
+  open: 0
+  close: 1
+
+# cutter mechanism:
+mx64:
+  open: -2
+  close: -0.7
+
+# dont wann squeeze the pep to deth
+grab_offset: [0.2, 0.0]
 
 
 # -------------- TUNING INSTRUCTIONS -------------#
