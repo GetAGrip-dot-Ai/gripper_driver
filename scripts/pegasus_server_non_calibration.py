@@ -211,7 +211,7 @@ class MotorDriverROSWrapper:
         elif req.command == 7:
             
             rospy.loginfo("TESTING")
-            for i in range(10):
+            for i in range(100):
                 self.controller_pub.publish(self.open_msg)
                 rospy.sleep(3.0)
                 self.controller_pub.publish(self.close_msg)

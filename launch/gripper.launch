@@ -1,5 +1,5 @@
 <launch>
-  <arg name="usb_port"                default="/dev/ttyUSB0"/>
+  <arg name="usb_port"                default="/dev/ttyUSB1"/>
   <arg name="baud_rate"           default="57600"/>
   <arg name="namespace"               default="ag_gripper"/>
 

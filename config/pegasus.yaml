@@ -10,7 +10,7 @@
 mx64:
   ID: 2
   Return_Delay_Time: 0
-  Goal_Position: 1000   # all metal gear (silver body) 11/2
+  Goal_Position: 1000   # all metal gear (silver body) 11/7
   # Goal_Position: 1800   # plastic gearing silver/white body 11/2
 
 
@@ -19,7 +19,7 @@ mx64:
 mx28:
   ID: 3
   Return_Delay_Time: 0
-  Goal_Position: 2300 #all metal gear (silver body) 11/2
+  Goal_Position: 2300 #all metal gear (silver body) 11/7
   # Goal_Position: 3200 #plastic gearing silver/white body 11/2
 
 

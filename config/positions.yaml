@@ -18,11 +18,11 @@
 # # dont wann squeeze the pep to deth
 # grab_offset: [0.1, 0.0]
 
-# -------------- all metal gear silver body (LAST UPDATED 11/2) -------------#
+# -------------- all metal gear silver body (LAST UPDATED 11/7) -------------#
 
 # gripper mechanism:
 mx28:
-  open: 0
+  open: -0.2
   close: 1
 
 # cutter mechanism:
@@ -31,10 +31,10 @@ mx64:
   close: -0.7
 
 # dont wann squeeze the pep to deth
-grab_offset: [0.2, 0.0]
+grab_offset: [0.15, 0.0]
 
 
-# -------------- TUNING INSTRUCTIONS -------------#
+# -------------- TUNING INSTRUCTIONS secret note -------------#
 # 1) Update pegasus.yaml using the dynamixel wizard
 # 2) Set all mx28 and mx64 positions to the printed q_zero
 # 3) from printed q_zero, increment until tuned values are found
