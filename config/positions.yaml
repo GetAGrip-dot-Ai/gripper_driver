@@ -18,17 +18,17 @@
 # # dont wann squeeze the pep to deth
 # grab_offset: [0.1, 0.0]
 
-# -------------- all metal gear silver body (LAST UPDATED 11/2) -------------#
-
-# gripper mechanism:
-mx64gripper:
-  open: 0.2
-  close: 1.1
+# -------------- FVD FINAL! -------------#
 
 # cutter mechanism:
-mx64cutter:
-  open: -2
-  close: -0.70
+cutter:
+  open: -1.6
+  close: -1.6
+
+# gripper mechanism:
+gripper:
+  open: 2
+  close: 3
 
 # dont wann squeeze the pep to deth
 grab_offset: [0.1, 0.0]

@@ -50,6 +50,6 @@ catkin_package()
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-catkin_install_python(PROGRAMS scripts/pegasus_server.py
+catkin_install_python(PROGRAMS scripts/pegasus_server_non_calibration.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

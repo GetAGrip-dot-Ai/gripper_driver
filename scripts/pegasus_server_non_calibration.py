@@ -24,7 +24,7 @@ class MotorDriverROSWrapper:
         self.q_zero = np.array(init_state_msgs.position)
         rospy.loginfo("q_zero: {}".format(self.q_zero))
 
-        self.motor_names = ['mx64gripper', 'mx64cutter']
+        self.motor_names = ['cutter', 'gripper']
 
         # read in yaml file
         absolute_path = os.path.dirname(__file__)
@@ -35,12 +35,12 @@ class MotorDriverROSWrapper:
         with open(full_path) as file:
             positions = yaml.load(file, Loader=yaml.FullLoader)
             # import pdb; pdb.set_trace()
-            self.open_pos = np.array([positions['mx64gripper']['open'], positions['mx64cutter']['open']])
+            self.open_pos = np.array([positions['cutter']['open'], positions['gripper']['open']])
             rospy.loginfo("open_pos: {}".format(self.open_pos))
-            self.close_pos = np.array([positions['mx64gripper']['close'], positions['mx64cutter']['close']])
+            self.close_pos = np.array([positions['cutter']['close'], positions['gripper']['close']])
             rospy.loginfo("close_pos: {}".format(self.close_pos))
             self.reset_pos = copy.copy(self.q_zero)
-            self.close_pos = self.close_pos - np.array(positions['grab_offset'])
+            # self.close_pos = self.close_pos - np.array(positions['grab_offset'])
 
         # close gripper and cutter msg
         self.close_msg = JointTrajectory()
