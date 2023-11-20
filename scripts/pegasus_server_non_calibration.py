@@ -40,7 +40,7 @@ class MotorDriverROSWrapper:
             self.close_pos = np.array([positions['cutter']['close'], positions['gripper']['close']])
             rospy.loginfo("close_pos: {}".format(self.close_pos))
             self.reset_pos = copy.copy(self.q_zero)
-            # self.close_pos = self.close_pos - np.array(positions['grab_offset'])
+            self.close_pos = self.close_pos - np.array(positions['grab_offset'])
 
         # close gripper and cutter msg
         self.close_msg = JointTrajectory()

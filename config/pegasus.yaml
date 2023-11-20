@@ -10,7 +10,7 @@
 cutter:
   ID: 2
   Return_Delay_Time: 0
-  Goal_Position: 1000   # Final FVD 11/19
+  Goal_Position: 800   # Final FVD 11/19
   # Goal_Position: 1000   # all metal gear (silver body) 11/2
   # Goal_Position: 1800   # plastic gearing silver/white body 11/2
 
