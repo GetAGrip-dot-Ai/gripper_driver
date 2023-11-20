@@ -20,18 +20,18 @@
 
 # -------------- FVD FINAL! -------------#
 
-# cutter mechanism:
-cutter:
-  open: -1.6
-  close: -1.6
-
 # gripper mechanism:
 gripper:
   open: 2
   close: 3
 
+# cutter mechanism:
+cutter:
+  open: -2
+  close: -0.7
+
 # dont wann squeeze the pep to deth
-grab_offset: [0.1, 0.0]
+grab_offset: [0, 0.15]
 
 
 # -------------- TUNING INSTRUCTIONS -------------#

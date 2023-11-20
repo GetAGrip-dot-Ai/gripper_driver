@@ -69,7 +69,7 @@ class MotorDriverROSWrapper:
         self.open_cutter_harvest_msg = JointTrajectory()
         self.open_cutter_harvest_msg.joint_names = self.motor_names
         open_cutter_harvest_jtp = JointTrajectoryPoint()
-        open_cutter_harvest_jtp.positions = np.array([self.close_pos[0], self.open_pos[1]])
+        open_cutter_harvest_jtp.positions = np.array([self.open_pos[0], self.close_pos[1]])
         open_cutter_harvest_jtp.time_from_start = rospy.Duration.from_sec(0.5)  
         self.open_cutter_harvest_msg.points.append(open_cutter_harvest_jtp)
     
@@ -93,7 +93,7 @@ class MotorDriverROSWrapper:
             self.close_gripper_msg = JointTrajectory()
             self.close_gripper_msg.joint_names = self.motor_names
             close_gripper_jtp = JointTrajectoryPoint()
-            close_gripper_jtp.positions = np.array([self.close_pos[0], q.position[1]])
+            close_gripper_jtp.positions = np.array([q.position[0], self.close_pos[1]])
             close_gripper_jtp.time_from_start = rospy.Duration.from_sec(1.0)
             self.close_gripper_msg.points.append(close_gripper_jtp)
             self.controller_pub.publish(self.close_gripper_msg)
@@ -150,7 +150,7 @@ class MotorDriverROSWrapper:
             self.open_cutter_msg = JointTrajectory()
             self.open_cutter_msg.joint_names = self.motor_names
             open_cutter_jtp = JointTrajectoryPoint()
-            open_cutter_jtp.positions = np.array([q.position[0], self.open_pos[1]])
+            open_cutter_jtp.positions = np.array([self.open_pos[0], q.position[1]])
             open_cutter_jtp.time_from_start = rospy.Duration.from_sec(1.0)
             self.open_cutter_msg.points.append(open_cutter_jtp)
 
@@ -168,7 +168,7 @@ class MotorDriverROSWrapper:
             self.close_cutter_msg = JointTrajectory()
             self.close_cutter_msg.joint_names = self.motor_names
             close_cutter_jtp = JointTrajectoryPoint()
-            close_cutter_jtp.positions = np.array([q.position[0], self.close_pos[1]])
+            close_cutter_jtp.positions = np.array([self.close_pos[0], q.position[1]])
             close_cutter_jtp.time_from_start = rospy.Duration.from_sec(1.0)
             self.close_cutter_msg.points.append(close_cutter_jtp)
 
@@ -185,7 +185,7 @@ class MotorDriverROSWrapper:
             self.open_gripper_msg = JointTrajectory()
             self.open_gripper_msg.joint_names = self.motor_names
             open_gripper_jtp = JointTrajectoryPoint()
-            open_gripper_jtp.positions = [self.open_pos[0], q.position[1]]
+            open_gripper_jtp.positions = [q.position[0], self.open_pos[1]]
             open_gripper_jtp.time_from_start = rospy.Duration.from_sec(1.0)
             self.open_gripper_msg.points.append(open_gripper_jtp)
             self.controller_pub.publish(self.open_gripper_msg)
@@ -201,7 +201,7 @@ class MotorDriverROSWrapper:
             self.close_gripper_msg = JointTrajectory()
             self.close_gripper_msg.joint_names = self.motor_names
             close_gripper_jtp = JointTrajectoryPoint()
-            close_gripper_jtp.positions = np.array([self.close_pos[0], q.position[1]])
+            close_gripper_jtp.positions = np.array([q.position[0], self.close_pos[1]])
             close_gripper_jtp.time_from_start = rospy.Duration.from_sec(1.0)
             self.close_gripper_msg.points.append(close_gripper_jtp)
             self.controller_pub.publish(self.close_gripper_msg)
