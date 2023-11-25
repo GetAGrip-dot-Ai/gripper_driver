@@ -12,7 +12,7 @@ from dynamixel_workbench_msgs.msg import DynamixelStateList
 import yaml
 import os
 
-GRIP_THRESHOLD = 1300 # TODO tune this
+GRIP_THRESHOLD = 1100 # TODO tune this
 
 class MotorDriverROSWrapper:
 
@@ -80,11 +80,6 @@ class MotorDriverROSWrapper:
         self.motor_states_sub = rospy.Subscriber("/ag_gripper/dynamixel_state", DynamixelStateList, self.current_callback)
         self.grip_current = rospy.Publisher("/ag_gripper/grip_current", Int16, queue_size=1)
         self.motor_currents = {id: 0 for id in self.motor_names}
-        # thresholds are the limits for a successful grip/cut
-        self.motor_thresholds = {
-            'cutter': 1500,
-            'gripper': 1500
-        }
         
         # publisher to say if gripper is gripping something
         self.grip_publisher = rospy.Publisher("/ag_gripper/has_grip", Bool, queue_size=1)
