@@ -4,10 +4,13 @@ import copy
 import numpy as np
 from numpy.linalg import norm
 import rospy
-from std_msgs.msg import Bool
+from std_msgs.msg import Bool, Int16
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from sensor_msgs.msg import JointState
 from ag_gripper_driver.srv import Pegasus, PegasusResponse
+from dynamixel_workbench_msgs.msg import DynamixelStateList
+
+GRIP_THRESHOLD = 1300 # TODO tune this
 
 class MotorDriverROSWrapper:
 
@@ -71,11 +74,40 @@ class MotorDriverROSWrapper:
         open_cutter_harvest_jtp.positions = np.array([self.close_pos[0], self.open_pos[1]])
         open_cutter_harvest_jtp.time_from_start = rospy.Duration.from_sec(0.5)  
         self.open_cutter_harvest_msg.points.append(open_cutter_harvest_jtp)
-    
+        
+        # sub to read dynamixel current
+        self.motor_states_sub = rospy.Subscriber("/ag_gripper/dynamixel_state", DynamixelStateList, self.current_callback)
+        self.grip_current = rospy.Publisher("/ag_gripper/grip_current", Int16, queue_size=1)
+        self.motor_currents = {id: 0 for id in self.motor_names}
+        # thresholds are the limits for a successful grip/cut
+        self.motor_thresholds = {
+            'mx28': 1500,
+            'mx64': 1500
+        }
+        
+        # publisher to say if gripper is gripping something
+        self.grip_publisher = rospy.Publisher("/ag_gripper/has_grip", Bool, queue_size=1)
+        self.grip_timer = rospy.Timer(rospy.Duration(0.1), self.publish_grip)
+        
         # start service
         self.service = rospy.Service('/gripper_service', Pegasus, self.run)
         rospy.spin()
         
+    def current_callback(self, msg):
+        
+        for motor in msg.dynamixel_state:
+            
+            id = motor.name
+            self.motor_currents[id] = motor.present_current
+            
+        self.grip_current.publish(self.motor_currents['mx28'])
+            
+    def publish_grip(self, event):
+        
+        if self.motor_currents['mx28'] > GRIP_THRESHOLD:
+            self.grip_publisher.publish(True)
+        else:
+            self.grip_publisher.publish(False)
         
     def run(self, req):
         if req.command == 0:
