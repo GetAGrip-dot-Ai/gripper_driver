@@ -126,20 +126,32 @@ class MotorDriverROSWrapper:
             self.controller_pub.publish(self.close_gripper_msg)
             
             rospy.sleep(3.0)
-            rospy.loginfo("Cutting 3x....")
-            self.controller_pub.publish(self.close_cutter_harvest_msg)
-            rospy.sleep(1.0)
-            self.controller_pub.publish(self.open_cutter_harvest_msg)
-            rospy.sleep(3.0)
-            self.controller_pub.publish(self.close_cutter_harvest_msg)
-            rospy.sleep(1.0)
-            self.controller_pub.publish(self.open_cutter_harvest_msg)
-            rospy.sleep(3.0)
-            self.controller_pub.publish(self.close_cutter_harvest_msg)
-            rospy.sleep(1.0)
-            self.controller_pub.publish(self.open_cutter_harvest_msg)
-            rospy.sleep(3.0)
-            rospy.loginfo("------ HARVESTING PROCEDURE COMPLETED ------")
+
+            q_new = rospy.wait_for_message('/ag_gripper/joint_states', JointState)
+            effort = q_new.effort
+            print(effort)
+            if norm(effort[1]) < 12.0:
+                rospy.loginfo("Gripper is not holding the plant, please check!")
+                self.controller_pub.publish(self.open_msg)
+                rospy.sleep(3.0)
+
+                return PegasusResponse(1)
+            else:
+                
+                rospy.loginfo("Cutting 3x....")
+                self.controller_pub.publish(self.close_cutter_harvest_msg)
+                rospy.sleep(1.0)
+                self.controller_pub.publish(self.open_cutter_harvest_msg)
+                rospy.sleep(3.0)
+                self.controller_pub.publish(self.close_cutter_harvest_msg)
+                rospy.sleep(1.0)
+                self.controller_pub.publish(self.open_cutter_harvest_msg)
+                rospy.sleep(3.0)
+                self.controller_pub.publish(self.close_cutter_harvest_msg)
+                rospy.sleep(1.0)
+                self.controller_pub.publish(self.open_cutter_harvest_msg)
+                rospy.sleep(3.0)
+                rospy.loginfo("------ HARVESTING PROCEDURE COMPLETED ------")
             
             return PegasusResponse(1)
         
